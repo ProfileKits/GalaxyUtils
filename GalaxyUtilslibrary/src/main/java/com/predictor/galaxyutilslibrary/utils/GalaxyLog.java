@@ -14,7 +14,7 @@ import java.io.IOException;
  * @version $Revision: 1.0 $, $Date: 2013-9-13 下午12:22:49 $
  */
 public abstract class GalaxyLog {
-
+	
 	public static final String TAG = "GalaxyStudio";
 	private static final String LOG_FILE = "GalaxyStudio.log";
 
