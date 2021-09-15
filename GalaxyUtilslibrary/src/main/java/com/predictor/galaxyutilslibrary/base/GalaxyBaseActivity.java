@@ -15,19 +15,29 @@ import androidx.appcompat.app.AppCompatActivity;
 public abstract class GalaxyBaseActivity extends AppCompatActivity {
     protected Context mContext;
     public Typeface typeface;
+    private boolean fullScreen = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mContext = this;
-        //设置全屏
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        if (fullScreen) {
+            //设置全屏
+            getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        }
         initView();
         initData();
         initListener();
     }
 
+    public void setFullScreen(boolean full) {
+        this.fullScreen = full;
+    }
+
     protected abstract void initView();
+
     protected abstract void initData();
+
     protected abstract void initListener();
 
 
@@ -49,10 +59,10 @@ public abstract class GalaxyBaseActivity extends AppCompatActivity {
 
             @Override
             public void onAnimationEnd(Animator animation) {
-                if(hideView!=null){
+                if (hideView != null) {
                     hideView.setVisibility(View.GONE);
                 }
-                if(showView!=null){
+                if (showView != null) {
                     showView.setVisibility(View.VISIBLE);
                 }
                 ObjectAnimator mHiddenAction = ObjectAnimator.ofFloat(showView, "alpha", 0.1f, 1f, 1f);
@@ -127,12 +137,9 @@ public abstract class GalaxyBaseActivity extends AppCompatActivity {
     /**
      * 控制Activity的跳转方法
      *
-     * @param startIntent
-     *         intent
-     * @param bundle
-     *         bundle数据
-     * @param requestCode
-     *         请求码
+     * @param startIntent intent
+     * @param bundle      bundle数据
+     * @param requestCode 请求码
      */
     private void startActivity(Intent startIntent, Bundle bundle, int requestCode, boolean isFinish) {
         if (startIntent != null) {

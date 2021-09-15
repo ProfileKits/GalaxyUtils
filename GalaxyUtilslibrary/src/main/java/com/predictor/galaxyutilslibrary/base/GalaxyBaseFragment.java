@@ -10,7 +10,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 public abstract class GalaxyBaseFragment extends Fragment {
-    public Typeface typeface_hnd,typeface_hndb, typeface_hndm;
+    public Typeface typeface;
 
     public GalaxyBaseFragment() {}
 
